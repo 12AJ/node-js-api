@@ -2,14 +2,43 @@ const express = require('express');
 const db = require('./config/db'); 
 const getalldataadmin = require('./Routes/adminRoute')
 const adddataadmin = require('./Routes/adminRoute')
+const loginRoutes = require('./Routes/loginRoutes')
 const cors = require('cors')
 const app=express();
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 
-app.use(cors())
+app.use(cors( {
+    origin: 'http://localhost:5500',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+  } ));
+  
+  
+  
 app.use(express.json());
+
+
+
+    
+
+
+
+
+app.use(cookieParser())
+
+app.use(bodyParser.json())
 
 app.use('/data', getalldataadmin);
 app.use('/data',adddataadmin );
+
+
+
+
+
+app.use('/login',loginRoutes );
+
+
 
 
 
