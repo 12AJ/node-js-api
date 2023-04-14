@@ -20,7 +20,7 @@ const checkLoginData = (request, response) => {
             {
                 for(var count = 0; count < data.length; count++)
                 {
-                    if(data[count].password == password)
+                    if(data[count].password == password ) 
                     {
                         secretkey="ketan_d"
                         const token = jwt.sign({username:username},secretkey,{expiresIn:"1800s"})
@@ -28,19 +28,17 @@ const checkLoginData = (request, response) => {
 
                        // response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, content-type");
                         
-                        response.cookie('token', token , { maxAge:900000,  httpOnly:true,path:'/'})
-                        response.send('');
-                      //  response.send({send:"success"});
-
+                        response.cookie('token', token , { maxAge:900000,  httpOnly:true})
+                        if (error) error; 
+                        response.json({status:'ok', data:token})
                         return;
 
-                        //request.session.user_id = data[count].user_id;
-
-                        //response.redirect("/");
+                   
                     }
                     else
                     {
-                        response.send('Incorrect Password',{});
+                        
+                        response.send('Incorrect Password');
                     }
                 }
             }
