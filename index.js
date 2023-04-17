@@ -9,12 +9,11 @@ const app=express();
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
-app.use(cors( {
-    origin: 'http://127.0.0.1:5500',
-   allowedHeaders: ['Content-Type', 'Authorization'],
-   credentials: true
-  } ));
+app.use(cors())
 
+
+app.use(cors ());
+  
 app.use(express.json());
 
 
