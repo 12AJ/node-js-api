@@ -44,8 +44,7 @@ const checkLoginData = (request, response) => {
                         //response.redirect("/");
                     }
                     else
-                    {
-                        
+                    { 
                         response.send('Incorrect Password');
                     }
                 }
