@@ -48,6 +48,17 @@ console.log(assetLink)
         })
 }
 
+const GetCampData = (req, resp) => {
+    con.query("select * from links", (err, result) => {
+        if (err) {
+            resp.send("This is Error");
+        } else {
+            resp.send(result);
+        }
+    });
+}
+
 module.exports={
-    CampaigndataSave
+    CampaigndataSave,
+    GetCampData
 }

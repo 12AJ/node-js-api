@@ -11,7 +11,7 @@ const checkLoginData = (request, response) => {
     if(username && password)
     {
         query = `
-        SELECT * FROM  signup
+        SELECT * FROM   signup
  
         WHERE username = "${username}"
         `;
@@ -26,15 +26,16 @@ const checkLoginData = (request, response) => {
                     {
                         secretkey="ketan_d"
                         const token = jwt.sign({username:username},secretkey,{expiresIn:"1800s"})
-                        console.log(token)
+                        console.log("ketan"+token)
 
                        // response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, content-type");
                         
-                        response.cookie('token', token , { maxAge:900000,  httpOnly:true,path:'/'})
-                        response.send('');
+                        response.cookie('token', token, { maxAge:900000,  httpOnly:true,path:'/'})
+                       
+                       // response.send('');
 
                         if(error) error;
-                        response.json({status:'ok',token:data})
+                        response.json({status:'ok',token:token})
                       //  response.send({send:"success"});
 
                         return;
@@ -46,6 +47,7 @@ const checkLoginData = (request, response) => {
                     else
                     { 
                         response.send('Incorrect Password');
+                        return;
                     }
                 }
             }
