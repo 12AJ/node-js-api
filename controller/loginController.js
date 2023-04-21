@@ -35,7 +35,7 @@ const checkLoginData = (request, response) => {
                        // response.send('');
 
                         if(error) error;
-                        response.json({status:'ok',token:token})
+                        response.json({status:'ok',data:token})
                       //  response.send({send:"success"});
 
                         return;
@@ -55,13 +55,13 @@ const checkLoginData = (request, response) => {
             {
                 response.send('Incorrect Email Address');
             }
-            response.end();
+            //response.end();
         });
     }
     else
     {
         response.send('Please Enter Email Address and Password Details');
-        response.end();
+       // response.end();
     }
 
 }

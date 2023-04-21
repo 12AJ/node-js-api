@@ -10,7 +10,7 @@ const {authenticateToken}=require('../middleware/middleware.js')
 loginRoutes.post("/userlogin", checkLoginData);
 loginRoutes.get("/userDataCheck",UserDataChecks);
 loginRoutes.post("/form-data",CampaigndataSave );
-loginRoutes.get("/camp-data", GetCampData);
+loginRoutes.get("/camp-data", authenticateToken,GetCampData);
 
 
 
