@@ -35,7 +35,7 @@ const checkLoginData = (request, response) => {
                        // response.send('');
 
                         if(error) error;
-                        response.json({status:'ok',token:token})
+                        response.json({status:'ok',data:token})
                       //  response.send({send:"success"});
 
                         return;

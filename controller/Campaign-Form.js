@@ -58,7 +58,20 @@ const GetCampData = (req, resp) => {
     });
 }
 
+
+
+const GetSpecificData = (req,resp) => {
+    con.query("select * From EDM_link", (err, result) => {
+        if (err) {
+            resp.send("This is Error");
+        } else {
+            resp.send(result);
+        }
+    });
+}
+
 module.exports={
     CampaigndataSave,
-    GetCampData
+    GetCampData,
+    GetSpecificData
 }
