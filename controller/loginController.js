@@ -2,7 +2,7 @@
 
 const con = require('../config/db'); 
 const jwt=require('jsonwebtoken')
-const aututicate=require('../middleware/middleware.js')
+//const aututicate=require('../middleware/middleware.js')
 
 
 const checkLoginData = (request, response) => {
@@ -25,12 +25,11 @@ const checkLoginData = (request, response) => {
                     if(data[count].password == password ) 
                     {
                         secretkey="ketan_d"
-                        const token = jwt.sign({username:username},secretkey,{expiresIn:"1800s"})
-                        // console.log("ketan"+token)
+                        const token = jwt.sign({username:username,firstname:data[count].firstname},secretkey,{expiresIn:"1800s"})
+                       // console.log("ketan"+token)
 
                        // response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, content-type");
-                        
-                        response.cookie('token', token, { maxAge:900000,  httpOnly:true,path:'/'})
+                        response.cookie('token', token, { maxAge:900000,path:'/'})
                        
                        // response.send('');
 

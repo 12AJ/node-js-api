@@ -6,6 +6,7 @@ const loginRoutes = require('./Routes/loginRoutes')
 const userDataCheck = require('./Routes/loginRoutes')
 const CampaigndataSave = require('./Routes/loginRoutes')
 const GetCampData = require('./Routes/loginRoutes')
+const GetSpecificData = require('./Routes/loginRoutes')
 const cors = require('cors')
 const app=express();
 const bodyParser = require('body-parser')
@@ -18,6 +19,7 @@ app.use(cors( {
     origin: 'http://localhost',
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
+    
   } ));
   
 
@@ -41,6 +43,8 @@ app.use('/data',adddataadmin );
 
 app.use('/login',loginRoutes);
 
+
+
 app.use('/user',userDataCheck);
 
 app.use('/app/v1',CampaigndataSave);
@@ -49,6 +53,8 @@ app.use('/app/v1',CampaigndataSave);
 ///get Links Camp Data
 
 app.use('/camp-list',GetCampData);
+
+app.use('/camp-id',GetSpecificData);
 
 
 

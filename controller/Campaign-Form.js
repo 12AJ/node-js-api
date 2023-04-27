@@ -57,8 +57,18 @@ const GetCampData = (req, resp) => {
         }
     });
 }
+const GetSpecificData = (req,resp) => {
+    con.query("SELECT count(*) FROM links WHERE userid = `{req", (err, result) => {
+        if (err) {
+            resp.send("This is Error");
+        } else {
+            resp.send(result);
+        }
+    });
+}
 
 module.exports={
     CampaigndataSave,
-    GetCampData
+    GetCampData,
+    GetSpecificData
 }
