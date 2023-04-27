@@ -26,7 +26,7 @@ const checkLoginData = (request, response) => {
                     {
                         secretkey="ketan_d"
                         const token = jwt.sign({username:username},secretkey,{expiresIn:"1800s"})
-                        console.log("ketan"+token)
+                        // console.log("ketan"+token)
 
                        // response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, content-type");
                         
