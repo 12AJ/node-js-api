@@ -57,8 +57,38 @@ const GetCampData = (req, resp) => {
         }
     });
 }
-const GetSpecificData = (req,resp) => {
-    con.query("SELECT count(*) FROM links WHERE userid = `{req", (err, result) => {
+const GetAllCountData = (req,resp) => {
+    con.query("SELECT count(*) FROM links WHERE userid = `", (err, result) => {
+        if (err) {
+            resp.send("This is Error");
+        } else {
+            resp.send(result);
+        }
+    });
+}
+
+const Filterdata = (req,resp) => {
+    con.query("SELECT count(*) FROM links WHERE userid = `", (err, result) => {
+        if (err) {
+            resp.send("This is Error");
+        } else {
+            resp.send(result);
+        }
+    });
+
+}
+const SearchByData = (req,resp) => {
+    con.query("SELECT count(*) FROM links WHERE userid = `", (err, result) => {
+        if (err) {
+            resp.send("This is Error");
+        } else {
+            resp.send(result);
+        }
+    });
+}
+
+const SearchByChart = (req,resp) => {
+    con.query("SELECT count(*) FROM links WHERE userid = `", (err, result) => {
         if (err) {
             resp.send("This is Error");
         } else {
@@ -70,5 +100,8 @@ const GetSpecificData = (req,resp) => {
 module.exports={
     CampaigndataSave,
     GetCampData,
-    GetSpecificData
+    GetAllCountData,
+    Filterdata,
+    SearchByData,
+    SearchByChart
 }

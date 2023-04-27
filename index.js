@@ -6,7 +6,13 @@ const loginRoutes = require('./Routes/loginRoutes')
 const userDataCheck = require('./Routes/loginRoutes')
 const CampaigndataSave = require('./Routes/loginRoutes')
 const GetCampData = require('./Routes/loginRoutes')
-const GetSpecificData = require('./Routes/loginRoutes')
+const GetAllCountData = require('./Routes/loginRoutes')
+
+const Filterdata = require('./Routes/loginRoutes')
+const searchbydata = require('./Routes/loginRoutes')
+const searchbychart = require('./Routes/loginRoutes')
+
+
 const cors = require('cors')
 const app=express();
 const bodyParser = require('body-parser')
@@ -54,7 +60,13 @@ app.use('/app/v1',CampaigndataSave);
 
 app.use('/camp-list',GetCampData);
 
-app.use('/camp-id',GetSpecificData);
+//Searhing Data
+
+app.use('/camp-id',GetAllCountData);
+
+app.use('/filter-data',Filterdata);
+app.use('/search-data',searchbydata);
+app.use('/search-chart',searchbychart);
 
 
 
