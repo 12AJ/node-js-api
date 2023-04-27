@@ -6,7 +6,7 @@ const {GetCampData} = require('../controller/Campaign-Form')
 const {GetSpecificData} = require('../controller/Campaign-Form')
 
 const jwt=require('jsonwebtoken')
-const {authenticateToken}=require('../middleware/middleware.js')
+const {authenticateToken}=require('../Middleware/middleware')
 
 
 loginRoutes.post("/userlogin", checkLoginData);

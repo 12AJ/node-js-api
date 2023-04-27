@@ -57,11 +57,8 @@ const GetCampData = (req, resp) => {
         }
     });
 }
-
-
-
 const GetSpecificData = (req,resp) => {
-    con.query("select * From EDM_link", (err, result) => {
+    con.query("SELECT count(*) FROM links WHERE userid = `{req", (err, result) => {
         if (err) {
             resp.send("This is Error");
         } else {
