@@ -20,14 +20,30 @@ const  CampaigndataSave= (req, res) => {
     //     if (error) error;
     //     res.send({send:"ok"});
         // })
-        console.log(i)
-if(i==data.asset_link_data.length-1){
-    assetString+=`${element.title}`
-    assetLink+=`${element.link}` 
-}else{
-    assetString+=`${element.title}#$#@`
-    assetLink+=`${element.link}#$#@`
-}
+        if( element.link == "undefined" && element.title !== 'undefined' || element.title !==""){
+
+             //dont save to string
+            
+            }else{
+            
+           //save to string 
+            
+           if(i==data.asset_link_data.length-1){
+            
+            assetString+=`${element.title}`.replaceAll('"', '');
+            
+            assetLink+=`${element.link}` ;
+            
+           }else{
+            
+            assetString+=`${element.title}#$#@`.replaceAll('"', '')
+            
+            assetLink+=`${element.link}#$#@`
+            
+           }
+            
+            }
+            
 });
 console.log(assetString)
 console.log(assetLink)
@@ -39,10 +55,16 @@ console.log(assetLink)
             Category:data.category,
             Client_Code:data.client_code,
             Country:data.country,
-            Asset_Name:assetString,
-            edm_link:assetLink
+            EDM_Completed_By:data.username,
+            userid:data.userid,
+            Asset_Name:assetString.replaceAll('"',''),
+            edm_link:assetLink.replaceAll('"',''),
+        
         }
+      console.log(temp)
+     
          con.query("INSERT INTO links SET ?", temp, (error, result) => {
+            
         if (error) error;
         res.send({send:"ok"});
         })
@@ -58,37 +80,61 @@ const GetCampData = (req, resp) => {
     });
 }
 const GetAllCountData = (req,resp) => {
-    con.query("SELECT count(*) FROM links WHERE userid = 102870", (err, result) => {
+    con.query("SELECT count(*) FROM links WHERE userid = 102870 GROUP BY ID", (err, result) => {
         if (err) {
             resp.send("This is Error");
         } else {
             resp.send(result);
+        }
+    });
+}
+const GetAllLinks = (req,resp) => {
+    con.query(`select EDM_link, (length(EDM_link) - length(replace(EDM_link, '$', ''))+ 1 ) AS totalLinks from links WHERE  userid = '${req.body.userid}'`, (err, result) => {
+        if (err) {
+            resp.send("This is Error");
+        } else {
+            let tmp=0;
+            result.forEach((element)=>{
+               console.log(element.totalLinks); 
+               tmp+=element.totalLinks;
+            })
+            resp.json({totalLinks:tmp});
         }
     });
 }
 
 const Filterdata = (req,resp) => {
-    con.query("SELECT count(*) FROM links WHERE Client_Code = cs", (err, result) => {
+    console.log(req.body)
+    con.query(`select EDM_link, (length(EDM_link) - length(replace(EDM_link, '$', ''))+ 1 ) AS total from links WHERE Client_Code = '${req.body.client_code}' AND Country = '${req.body.country}' AND Category = '${req.body.category}' AND userid = '${req.body.userid}'`, (err, result) => {
         if (err) {
             resp.send("This is Error");
         } else {
-            resp.send(result);
+            let tmp=0;
+            result.forEach((element)=>{
+              // console.log(element.total); 
+               tmp+=element.total;
+            })
+            resp.json({total:tmp});
         }
     });
 
 }
 const SearchByData = (req,resp) => {
-    con.query("SELECT count(*) FROM links WHERE userid = `", (err, result) => {
+    console.log(req.body.userData)
+    con.query(`SELECT * FROM links WHERE Cid LIKE '%${req.body.userData}%' OR Campaign_Name LIKE '%${req.body.userData}%'  OR EDM_link LIKE '%${req.body.userData}%'`, (err, result) => {
+       console.log(result)
         if (err) {
+
             resp.send("This is Error");
         } else {
-            resp.send(result);
+
+            resp.send(result)
         }
     });
 }
 
 const SearchByChart = (req,resp) => {
-    con.query("SELECT count(*) FROM links WHERE userid = `", (err, result) => {
+    con.query("SELECT count(*) FROM `links` WHERE Client_Code = 'cs' AND Country = 'NON-EU' AND Category = 'W8'", (err, result) => {
         if (err) {
             resp.send("This is Error");
         } else {
@@ -103,5 +149,6 @@ module.exports={
     GetAllCountData,
     Filterdata,
     SearchByData,
-    SearchByChart
+    SearchByChart,
+    GetAllLinks
 }

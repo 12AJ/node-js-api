@@ -11,6 +11,7 @@ const GetAllCountData = require('./Routes/loginRoutes')
 const Filterdata = require('./Routes/loginRoutes')
 const searchbydata = require('./Routes/loginRoutes')
 const searchbychart = require('./Routes/loginRoutes')
+const GetAllLinks = require('./Routes/loginRoutes')
 
 
 const cors = require('cors')
@@ -67,6 +68,7 @@ app.use('/camp-id',GetAllCountData);
 app.use('/filter-data',Filterdata);
 app.use('/search-data',searchbydata);
 app.use('/search-chart',searchbychart);
+app.use('/Get-All-Links',GetAllLinks);
 
 
 
