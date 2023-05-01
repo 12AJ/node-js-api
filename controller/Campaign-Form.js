@@ -58,7 +58,7 @@ const GetCampData = (req, resp) => {
     });
 }
 const GetAllCountData = (req,resp) => {
-    con.query("SELECT count(*) FROM links WHERE userid = `", (err, result) => {
+    con.query("SELECT count(*) FROM links WHERE userid = 102870", (err, result) => {
         if (err) {
             resp.send("This is Error");
         } else {
@@ -68,7 +68,7 @@ const GetAllCountData = (req,resp) => {
 }
 
 const Filterdata = (req,resp) => {
-    con.query("SELECT count(*) FROM links WHERE userid = `", (err, result) => {
+    con.query("SELECT count(*) FROM links WHERE Client_Code = cs", (err, result) => {
         if (err) {
             resp.send("This is Error");
         } else {
