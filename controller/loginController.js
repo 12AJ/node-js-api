@@ -29,7 +29,7 @@ const checkLoginData = (request, response) => {
                        // console.log("ketan"+token)
 
                        // response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, content-type");
-                        response.cookie('token', token, { maxAge:900000,path:'/'})
+                        response.cookie('token', token, { maxAge: 90000000, path:'/'})
                        
                        // response.send('');
 
