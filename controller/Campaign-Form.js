@@ -6,27 +6,7 @@ const  CampaigndataSave= (req, res) => {
     let assetString='';
     let assetLink='';
     data.asset_link_data.forEach( (element,i) => {
-    //  temp ={
-    //     cid: data.cid,
-    //     Campaign_Name:data.cname,
-    //     Category:data.category,
-    //     Client_Code:data.client_code,
-    //     Country:data.country,
-    //     Asset_Name:element.title,
-    //     edm_link:element.link
-    // }
-    // console.log(temp)
-    // con.query("INSERT INTO links SET ?", temp, (error, result) => {
-    //     if (error) error;
-    //     res.send({send:"ok"});
-        // })
-        if( element.link == "undefined" && element.title !== 'undefined' || element.title !==""){
 
-             //dont save to string
-            
-            }else{
-            
-           //save to string 
             
            if(i==data.asset_link_data.length-1){
             
@@ -42,7 +22,7 @@ const  CampaigndataSave= (req, res) => {
             
            }
             
-            }
+            
             
 });
 console.log(assetString)
@@ -73,14 +53,14 @@ console.log(assetLink)
 const GetCampData = (req, resp) => {
     con.query("select * from links", (err, result) => {
         if (err) {
-            resp.send("This is Error");
+            resp.send("This is Error ");
         } else {
             resp.send(result);
         }
     });
 }
 const GetAllCountData = (req,resp) => {
-    con.query("SELECT count(*) FROM links WHERE userid = 102870 GROUP BY ID", (err, result) => {
+    con.query(`SELECT count(*) FROM links WHERE userid =${req.body.userid}  GROUP BY ID`, (err, result) => {
         if (err) {
             resp.send("This is Error");
         } else {
@@ -95,7 +75,7 @@ const GetAllLinks = (req,resp) => {
         } else {
             let tmp=0;
             result.forEach((element)=>{
-               console.log(element.totalLinks); 
+              // console.log(element.totalLinks); 
                tmp+=element.totalLinks;
             })
             resp.json({totalLinks:tmp});

@@ -17,6 +17,7 @@ const checkLoginData = (request, response) => {
         `;
 
         con.query(query, function(error, data){
+            console.log(data)
 
             if(data.length > 0)
             {
