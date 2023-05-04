@@ -69,7 +69,6 @@ const UserDataChecks=(req,resp)=>{
     //aututicate()
     con.query("select * from users", (err, result) => {
 
-     
         if (err) {
             resp.send("This is Error");
         } else {
@@ -78,8 +77,13 @@ const UserDataChecks=(req,resp)=>{
     });
 
 }
+
+
+
+
 module.exports = {
     checkLoginData,
-    UserDataChecks
+    UserDataChecks,
+   
 
 }

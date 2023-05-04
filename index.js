@@ -4,6 +4,7 @@ const getalldataadmin = require('./Routes/adminRoute')
 const adddataadmin = require('./Routes/adminRoute')
 const loginRoutes = require('./Routes/loginRoutes')
 const userDataCheck = require('./Routes/loginRoutes')
+
 const CampaigndataSave = require('./Routes/loginRoutes')
 const GetCampData = require('./Routes/loginRoutes')
 const GetAllCountData = require('./Routes/loginRoutes')
@@ -60,6 +61,8 @@ app.use('/app/v1',CampaigndataSave);
 ///get Links Camp Data
 
 app.use('/camp-list',GetCampData);
+
+
 
 //Searhing Data
 

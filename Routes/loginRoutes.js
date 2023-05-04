@@ -14,11 +14,13 @@ loginRoutes.get("/userDataCheck",UserDataChecks);
 loginRoutes.post("/form-data",CampaigndataSave );
 loginRoutes.get("/camp-data", authenticateToken,GetCampData);
 
+
+
 // All Gettting Data 
-loginRoutes.get("/specific-data", GetAllCountData);
+loginRoutes.post("/specific-data", GetAllCountData);
 loginRoutes.post("/filter-data", Filterdata);
 loginRoutes.post("/searchbydata", SearchByData);
-loginRoutes.get("/searchbychart", SearchByChart);
+loginRoutes.post("/searchbychart", SearchByChart);
 loginRoutes.post("/get-link", GetAllLinks);
 
 
