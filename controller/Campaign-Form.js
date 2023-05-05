@@ -3,6 +3,10 @@ const con = require('../config/db');
 let temp;
 const  CampaigndataSave= (req, res) => {
     const data = req.body
+
+
+
+    
     let assetString='';
     let assetLink='';
     data.asset_link_data.forEach( (element,i) => {
@@ -114,7 +118,7 @@ const SearchByData = (req,resp) => {
 }
 
 const SearchByChart = (req,resp) => {
-    con.query("SELECT count(*) FROM `links` WHERE Client_Code = 'cs' AND Country = 'NON-EU' AND Category = 'W8'", (err, result) => {
+    con.query(`SELECT * FROM links WHERE  WHERE userid =${req.body.userid}  GROUP BY ID`, (err, result) => {
         if (err) {
             resp.send("This is Error");
         } else {
