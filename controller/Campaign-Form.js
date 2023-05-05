@@ -118,7 +118,18 @@ const SearchByData = (req,resp) => {
 }
 
 const SearchByChart = (req,resp) => {
-    con.query(`SELECT * FROM links WHERE  WHERE userid =${req.body.userid}  GROUP BY ID`, (err, result) => {
+    con.query(`SELECT * FROM links WHERE  userid =${req.body.userid}  GROUP BY ID`, (err, result) => {
+        if (err) {
+            resp.send("This is Error");
+        } else {
+            res.send({send:"ok"});
+        }
+    });
+}
+
+
+const checkCamp = (req,resp) => {
+    con.query(`SELECT * FROM links WHERE  Campaign_Name ='${req.body.Campaign_Name}'`, (err, result) => {
         if (err) {
             resp.send("This is Error");
         } else {
@@ -134,5 +145,6 @@ module.exports={
     Filterdata,
     SearchByData,
     SearchByChart,
-    GetAllLinks
+    GetAllLinks,
+    checkCamp
 }
