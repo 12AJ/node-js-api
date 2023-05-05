@@ -118,7 +118,18 @@ const SearchByData = (req,resp) => {
 }
 
 const SearchByChart = (req,resp) => {
-    con.query(`SELECT * FROM links WHERE  WHERE userid =${req.body.userid}  GROUP BY ID`, (err, result) => {
+    con.query(`SELECT * FROM links WHERE  userid =${req.body.userid}  GROUP BY ID`, (err, result) => {
+        if (err) {
+            resp.send("This is Error");
+        } else {
+            resp.send({send:"ok"});
+        }
+    });
+}
+
+
+const checkCamp = (req,resp) => {
+    con.query(`SELECT * FROM links WHERE  Campaign_Name ='${req.body.Campaign_Name}'`, (err, result) => {
         if (err) {
             resp.send("This is Error");
         } else {
@@ -126,7 +137,13 @@ const SearchByChart = (req,resp) => {
         }
     });
 }
-
+const AdditionalUpdateData = (req,resp) => {
+    con.query(`UPDATE links SET Asset_Name = '${req.body.asset_data}',EDM_link= '${req.body.link_data}',Links_Updated_by= '${req.body.updatedby}',Comments= '${req.body.comment}' WHERE Campaign_Name = '${req.body.cname}'`, temp, (error, result) => {
+            
+        if (error) error;
+        resp.send({send:"ok"});
+        })
+}
 module.exports={
     CampaigndataSave,
     GetCampData,
@@ -134,5 +151,7 @@ module.exports={
     Filterdata,
     SearchByData,
     SearchByChart,
-    GetAllLinks
+    GetAllLinks,
+    checkCamp,
+    AdditionalUpdateData
 }

@@ -13,7 +13,8 @@ const Filterdata = require('./Routes/loginRoutes')
 const searchbydata = require('./Routes/loginRoutes')
 const searchbychart = require('./Routes/loginRoutes')
 const GetAllLinks = require('./Routes/loginRoutes')
-
+const checkCamp = require('./Routes/loginRoutes')
+const AdditionalUpdateData = require('./Routes/loginRoutes')
 
 const cors = require('cors')
 const app=express();
@@ -73,6 +74,8 @@ app.use('/search-data',searchbydata);
 app.use('/search-chart',searchbychart);
 app.use('/Get-All-Links',GetAllLinks);
 
+app.use('/check',checkCamp);
+app.use('/update',AdditionalUpdateData);
 
 
 
