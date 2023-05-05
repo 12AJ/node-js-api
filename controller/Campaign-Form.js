@@ -122,7 +122,7 @@ const SearchByChart = (req,resp) => {
         if (err) {
             resp.send("This is Error");
         } else {
-            res.send({send:"ok"});
+            resp.send({send:"ok"});
         }
     });
 }
@@ -137,7 +137,13 @@ const checkCamp = (req,resp) => {
         }
     });
 }
-
+const AdditionalUpdateData = (req,resp) => {
+    con.query(`UPDATE links SET Asset_Name = '${req.body.asset_data}',EDM_link= '${req.body.link_data}',Links_Updated_by= '${req.body.updatedby}',Comments= '${req.body.comment}' WHERE Campaign_Name = '${req.body.cname}'`, temp, (error, result) => {
+            
+        if (error) error;
+        resp.send({send:"ok"});
+        })
+}
 module.exports={
     CampaigndataSave,
     GetCampData,
@@ -146,5 +152,6 @@ module.exports={
     SearchByData,
     SearchByChart,
     GetAllLinks,
-    checkCamp
+    checkCamp,
+    AdditionalUpdateData
 }
