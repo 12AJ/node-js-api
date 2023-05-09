@@ -149,6 +149,7 @@ const MonthlyReport = (req,resp) => {
     con.query(`SELECT * FROM links WHERE 	date(Date)  BETWEEN '2023-05-06' AND '2023-05-10'`, temp, (error, result) => {
         if (error) error;
         resp.send(result);
+        
         })
 }
 module.exports={
