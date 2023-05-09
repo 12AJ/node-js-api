@@ -3,7 +3,8 @@ const con=mysql.createConnection({
     host:"localhost",
     user:"root",
     password:"",
-    database:"collated_report_test"
+    database:"collated_report_test",
+    timezone:'Z'
 });
 
 con.connect((err)=>{

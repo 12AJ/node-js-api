@@ -122,7 +122,7 @@ const SearchByChart = (req,resp) => {
         if (err) {
             resp.send("This is Error");
         } else {
-            resp.send({send:"ok"});
+            resp.send(result);
         }
     });
 }
@@ -144,6 +144,14 @@ const AdditionalUpdateData = (req,resp) => {
         resp.send({send:"ok"});
         })
 }
+
+const MonthlyReport = (req,resp) => {
+    con.query(`SELECT * FROM links WHERE 	date(Date)  BETWEEN '2023-05-06' AND '2023-05-10'`, temp, (error, result) => {
+        if (error) error;
+        resp.send(result);
+        
+        })
+}
 module.exports={
     CampaigndataSave,
     GetCampData,
@@ -153,5 +161,6 @@ module.exports={
     SearchByChart,
     GetAllLinks,
     checkCamp,
-    AdditionalUpdateData
+    AdditionalUpdateData,
+    MonthlyReport
 }
