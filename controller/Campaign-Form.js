@@ -146,7 +146,14 @@ const AdditionalUpdateData = (req,resp) => {
 }
 
 const MonthlyReport = (req,resp) => {
-    con.query(`SELECT * FROM links WHERE 	date(Date)  BETWEEN '2023-05-06' AND '2023-05-10'`, temp, (error, result) => {
+    con.query(`SELECT * FROM links WHERE 	date(Date)  BETWEEN  '${req.body.formdate}' AND '${req.body.todate}'`,  (error, result) => {
+        if (error) error;
+        resp.send(result);
+        
+        })
+}
+const AllUserList = (req,resp) => {
+    con.query(`SELECT firstname FROM signup `, (error, result) => {
         if (error) error;
         resp.send(result);
         
@@ -162,5 +169,6 @@ module.exports={
     GetAllLinks,
     checkCamp,
     AdditionalUpdateData,
-    MonthlyReport
+    MonthlyReport,
+    AllUserList
 }

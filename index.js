@@ -16,7 +16,7 @@ const GetAllLinks = require('./Routes/loginRoutes')
 const checkCamp = require('./Routes/loginRoutes')
 const AdditionalUpdateData = require('./Routes/loginRoutes')
 const MonthlyReport = require('./Routes/loginRoutes')
-
+const AllUserList = require('./Routes/loginRoutes')
 const cors = require('cors')
 const app=express();
 const bodyParser = require('body-parser')
@@ -79,6 +79,8 @@ app.use('/check',checkCamp);
 app.use('/update',AdditionalUpdateData);
 
 app.use('/monthly',MonthlyReport);
+
+app.use('/users',AllUserList);
 
 
 
