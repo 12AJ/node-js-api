@@ -146,7 +146,7 @@ const AdditionalUpdateData = (req,resp) => {
 }
 
 const MonthlyReport = (req,resp) => {
-    con.query(`SELECT * FROM links WHERE 	date(Date)  BETWEEN '${req.body.formdate}' AND '${req.body.todate}'`,  (error, result) => {
+    con.query(`SELECT * FROM links WHERE 	date(Date)  BETWEEN  '${req.body.formdate}' AND '${req.body.todate}'`,  (error, result) => {
         if (error) error;
         resp.send(result);
         
