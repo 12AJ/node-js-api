@@ -48,7 +48,8 @@ console.log(assetLink)
       console.log(temp)
      
          con.query("INSERT INTO links SET ?", temp, (error, result) => {
-            
+
+          
         if (error) error;
         res.send({send:"ok"});
         })
@@ -159,6 +160,30 @@ const AllUserList = (req,resp) => {
         
         })
 }
+
+const GetAllCountDataAdmin = (req,resp) => {
+    con.query(`SELECT count(*) FROM links `, (err, result) => {
+        if (err) {
+            resp.send("This is Error");
+        } else {
+            resp.send(result);
+        }
+    });
+}
+const GetAllLinksAdmin= (req,resp) => {
+    con.query(`select EDM_link, (length(EDM_link) - length(replace(EDM_link, '$', ''))+ 1 ) AS totalLinks from links `, (err, result) => {
+        if (err) {
+            resp.send("This is Error");
+        } else {
+            let tmp=0;
+            result.forEach((element)=>{
+              // console.log(element.totalLinks); 
+               tmp+=element.totalLinks;
+            })
+            resp.json({totalLinks:tmp});
+        }
+    });
+}
 module.exports={
     CampaigndataSave,
     GetCampData,
@@ -170,5 +195,7 @@ module.exports={
     checkCamp,
     AdditionalUpdateData,
     MonthlyReport,
-    AllUserList
+    AllUserList,
+    GetAllCountDataAdmin,
+    GetAllLinksAdmin
 }

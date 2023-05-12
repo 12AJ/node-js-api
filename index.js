@@ -20,7 +20,8 @@ const AllUserList = require('./Routes/loginRoutes')
 const cors = require('cors')
 const app=express();
 const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const { GetAllLinksAdmin, GetAllCountDataAdmin } = require('./controller/Campaign-Form');
 
 
 
@@ -83,8 +84,8 @@ app.use('/monthly',MonthlyReport);
 app.use('/users',AllUserList);
 
 
-
-
+app.use('/Get-All-Links-admin',GetAllLinksAdmin);
+app.use('/camp-id-admin',GetAllCountDataAdmin);
 
 app.listen(1010, function () {
     console.log('Node app is running on port 1010');
