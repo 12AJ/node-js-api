@@ -15,9 +15,15 @@ const getalldataadmin = (req, resp) => {
 //Create All Data
 const createsignupData = (req, res) => {
     const data = req.body
-    con.query("INSERT INTO signup SET ?", data, (error, result) => {
-        if (error) error;
-        res.send({send:"ok"});
+    con.query(`INSERT INTO signup SET ?`, data, (error, result) => {
+        
+        if (error) {
+            console.log(error);
+            res.send({send:"error",message:error.sqlMessage});
+        }else{
+            res.send({send:"ok"});
+        }
+       
     })
 }
 

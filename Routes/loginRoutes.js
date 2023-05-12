@@ -1,7 +1,7 @@
 const express = require('express');
 const loginRoutes= express.Router();
 const {checkLoginData,UserDataChecks} = require('../controller/loginController')
-const {CampaigndataSave, GetAllLinks,checkCamp,AdditionalUpdateData,MonthlyReport} = require('../controller/Campaign-Form')
+const {CampaigndataSave, GetAllLinks,checkCamp,AdditionalUpdateData,MonthlyReport, GetAllLinksAdmin, GetAllCountDataAdmin} = require('../controller/Campaign-Form')
 const {GetCampData} = require('../controller/Campaign-Form')
 const {GetAllCountData,Filterdata,SearchByData,SearchByChart,AllUserList    } = require('../controller/Campaign-Form')
 
@@ -26,6 +26,12 @@ loginRoutes.post("/check-camp", checkCamp);
 loginRoutes.post("/update-data", AdditionalUpdateData);
 loginRoutes.post("/data",MonthlyReport );
 loginRoutes.get("/data",AllUserList );
+
+loginRoutes.get("/get-link-admin", GetAllLinksAdmin);
+loginRoutes.get("/specific-data-admin", GetAllCountDataAdmin);
+
+
+
 
 
 
