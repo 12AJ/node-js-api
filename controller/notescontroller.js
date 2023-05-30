@@ -51,9 +51,10 @@ const createNote = (req, resp) => {
 
 // ***********************to Update note************************************
 const updateNote = (req, resp) => {
-
-
-    con.query(`UPDATE notes SET title = "${req.body.noteTitle}",abstract= "${req.body.noteAbstract}" WHERE id = "${req.body.noteId}"`, (error, result) => {
+console.log(req.body);
+    let tempTitle = req.body.noteTitle.replaceAll('"',"'");
+    let tempAbstract = req.body.noteAbstract.replaceAll('"',"'");
+    con.query(`UPDATE notes SET title = "${tempTitle}",abstract= "${tempAbstract}" WHERE id = ${req.body.noteId}`, (error, result) => {
       
     if (error) error;
     resp.send({send:"ok"});
