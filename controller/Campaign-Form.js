@@ -139,7 +139,8 @@ const checkCamp = (req,resp) => {
     });
 }
 const AdditionalUpdateData = (req,resp) => {
-    con.query(`UPDATE links SET Asset_Name = '${req.body.asset_data}',EDM_link= '${req.body.link_data}',Links_Updated_by= '${req.body.updatedby}',Comments= '${req.body.comment}' WHERE Campaign_Name = '${req.body.cname}'`, temp, (error, result) => {
+    console.log(req.body);
+    con.query(`UPDATE links SET Asset_Name = "${req.body.asset_data}",EDM_link= "${req.body.link_data}",Links_Updated_by= "${req.body.updatedby}",Comments= "${req.body.comment}" WHERE Campaign_Name = "${req.body.cname}"`, (error, result) => {
             
         if (error) error;
         resp.send({send:"ok"});

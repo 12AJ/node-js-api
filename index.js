@@ -17,6 +17,10 @@ const checkCamp = require('./Routes/loginRoutes')
 const AdditionalUpdateData = require('./Routes/loginRoutes')
 const MonthlyReport = require('./Routes/loginRoutes')
 const AllUserList = require('./Routes/loginRoutes')
+
+
+const notes = require('./Routes/loginRoutes')
+
 const cors = require('cors')
 const app=express();
 const bodyParser = require('body-parser')
@@ -86,6 +90,9 @@ app.use('/users',AllUserList);
 
 app.use('/Get-All-Links-admin',GetAllLinksAdmin);
 app.use('/camp-id-admin',GetAllCountDataAdmin);
+
+// ********************** for Notes **************************
+app.use('/notes',notes)
 
 app.listen(1010, function () {
     console.log('Node app is running on port 1010');
